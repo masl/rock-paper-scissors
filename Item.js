@@ -5,7 +5,6 @@ class Item {
         this.acc = createVector(0, 0)
 
         this.xoff = 0
-        this.wanderTheta = PI / 2
         this.maxForce = 0.2
         this.maxSpeed = 4
 
@@ -51,6 +50,27 @@ class Item {
         if (this.pos.y < 16) {
             this.pos.y = 16
             this.vel.mult(-1)
+        }
+    }
+    
+    eat(items) {
+        for (let item of items) {
+            if (item.type == this.type) continue
+
+            const distance =  p5.Vector.dist(this.pos, item.pos);
+            if (distance <= 32) {
+                if (this.type === "scissors" && item.type === "paper") {
+                    item.type = "scissors"
+                }
+
+                if (this.type === "rock" && item.type === "scissors") {
+                    item.type = "rock"
+                }
+
+                if (this.type === "paper" && item.type === "rock") {
+                    item.type = "paper"
+                }
+            }
         }
     }
 

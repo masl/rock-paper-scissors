@@ -9,6 +9,7 @@ function preload() {
 
 function setup() {
     createCanvas(800, 800);
+
     for (let i = 0; i < 20; i++) {
         items.push(new Item(random(0, width), random(0, height), "rock"))
     }
@@ -29,5 +30,6 @@ function draw() {
         item.update()
         item.show()
         item.checkEdge()
+        item.eat(items)
     }
 }
