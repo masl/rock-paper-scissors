@@ -42,8 +42,8 @@ class Item {
             this.vel.mult(-1)
         }
 
-        if (this.pos.y > height - 16) {
-            this.pos.y = height - 16
+        if (this.pos.y > height - statsBar.height - 16) {
+            this.pos.y = height - statsBar.height - 16
             this.vel.mult(-1)
         }
 
