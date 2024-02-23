@@ -9,8 +9,8 @@ function preload() {
 }
 
 function setup() {
-    statsBar = new Stats(800, 20)
-    createCanvas(800, 800 + statsBar.height);
+    statsBar = new Stats(windowWidth, 10)
+    createCanvas(windowWidth, windowHeight);
 
     for (let i = 0; i < 20; i++) {
         items.push(new Item(random(0, width), random(0, height), "rock"))
