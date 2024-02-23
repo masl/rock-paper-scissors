@@ -29,7 +29,7 @@ function draw() {
     background(220);
     for (let item of items) {
         item.wander()
-        item.update()
+        item.seek()
         item.show()
         item.checkEdge()
         item.eat(items)

@@ -11,6 +11,42 @@ class Item {
         this.type = type
     }
 
+    nearestTarget() {
+        let nearestTarget = null;
+        let nearestDistance = Infinity;
+
+        for (let item of items) {
+            if (
+                (this.type === "rock" && item.type === "scissors") ||
+                (this.type === "scissors" && item.type === "paper") ||
+                (this.type === "paper" && item.type === "rock")
+            ) {
+                const distance = p5.Vector.dist(this.pos, item.pos);
+                if (distance < nearestDistance) {
+                    nearestDistance = distance;
+                    nearestTarget = item;
+                }
+            }
+        }
+
+        return nearestTarget;
+    }
+
+    seek() {
+        const target = this.nearestTarget()
+        if (target) {
+            const desired = p5.Vector.sub(target.pos, this.pos);
+            desired.setMag(this.maxSpeed);
+
+            const steer = p5.Vector.sub(desired, this.vel);
+            steer.limit(this.maxForce / 4);
+
+            this.applyForce(steer);
+        }
+
+        this.update()
+    }
+
     update() {
         this.vel.add(this.acc)
         this.vel.limit(this.maxSpeed)
